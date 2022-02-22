@@ -4,7 +4,7 @@ from enum import Enum, IntEnum
 from ipaddress import IPv4Address
 from random import randint
 from secrets import token_urlsafe
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from Cryptodome.Cipher import AES
 from Cryptodome.Util.Padding import pad
@@ -31,6 +31,8 @@ class EndpointsType(str, Enum):
     djradio = "djradio"
     dj = "dj"
     detail_dj = "detail_dj"
+    user = "user"
+    user_playlist = "user_playlist"
 
 
 class SearchType(IntEnum):
@@ -191,21 +193,21 @@ class NeteaseEndpoint(BaseEndpoint):
             },
         )
 
-    async def detail(self, *, id: int):
+    async def detail(self, *, id: List[int]):
         return await self.request(
             "weapi/v3/song/detail",
             params={
                 "c": json.dumps(
-                    [{"id": str(id)}],
+                    [{"id": str(i)} for i in id],
                 ),
             },
         )
 
-    async def song(self, *, id: int, br: BitRateType = BitRateType.STANDARD):
+    async def song(self, *, id: List[int], br: BitRateType = BitRateType.STANDARD):
         return await self.request(
             "weapi/song/enhance/player/url",
             params={
-                "ids": [id],
+                "ids": id,
                 "br": br,
             },
         )
@@ -287,5 +289,21 @@ class NeteaseEndpoint(BaseEndpoint):
             "api/dj/program/detail",
             params={
                 "id": id,
+            },
+        )
+
+    async def user(self, *, id: int):
+        return await self.request(
+            "weapi/v1/user/detail/{id}",
+            params={"id": id},
+        )
+
+    async def user_playlist(self, *, id: int, limit: int = 50, offset: int = 0):
+        return await self.request(
+            "weapi/user/playlist",
+            params={
+                "uid": id,
+                "limit": limit,
+                "offset": offset,
             },
         )
