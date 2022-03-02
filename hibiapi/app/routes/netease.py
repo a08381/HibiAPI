@@ -1,6 +1,6 @@
-from typing import Callable, Coroutine, List
+from typing import Callable, Coroutine
 
-from fastapi import Depends, Query, Request
+from fastapi import Depends, Request
 
 from hibiapi.api.netease import (
     BitRateType,
@@ -112,9 +112,7 @@ async def album(id: int, endpoint: NeteaseEndpoint = Depends(request_client)):
 
 
 @router.get(EndpointsType.detail)
-async def detail(
-    id: List[int] = Query(...), endpoint: NeteaseEndpoint = Depends(request_client)
-):
+async def detail(id: int, endpoint: NeteaseEndpoint = Depends(request_client)):
     """
     ## Name: `detail`
 
@@ -133,7 +131,7 @@ async def detail(
 
 @router.get(EndpointsType.song)
 async def song(
-    id: List[int] = Query(...),
+    id: int,
     br: BitRateType = BitRateType.STANDARD,
     endpoint: NeteaseEndpoint = Depends(request_client),
 ):
@@ -351,57 +349,3 @@ async def detail_dj(id: int, endpoint: NeteaseEndpoint = Depends(request_client)
 
     """
     return await endpoint.detail_dj(id=id)
-
-
-@router.get(EndpointsType.user)
-async def user(id: int, endpoint: NeteaseEndpoint = Depends(request_client)):
-    """
-    ## Name: `user`
-
-    > 获取用户详细信息
-
-    ---
-
-    ### Required:
-
-    - ***int*** **`id`**
-        - Description: 用户ID
-
-    """
-    return await endpoint.user(id=id)
-
-
-@router.get(EndpointsType.user_playlist)
-async def user_playlist(
-    id: int,
-    offset: int = 0,
-    limit: int = 20,
-    endpoint: NeteaseEndpoint = Depends(request_client),
-):
-    """
-    ## Name: `user_playlist`
-
-    > 获取用户创建的歌单
-
-    ---
-
-    ### Required:
-
-    - ***int*** **`id`**
-        - Description: 用户ID
-
-    ---
-
-    ### Optional:
-    - ***int*** `offset` = `0`
-        - Description: 指定偏移数量，用于分页
-
-    - ***int*** `limit` = `20`
-        - Description: 指定返回结果数量
-
-    """
-    return await endpoint.user_playlist(
-        id=id,
-        offset=offset,
-        limit=limit,
-    )
