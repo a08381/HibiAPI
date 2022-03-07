@@ -152,7 +152,7 @@ toml = ["tomli"]
 
 [[package]]
 name = "fastapi"
-version = "0.71.0"
+version = "0.75.0"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 category = "main"
 optional = false
@@ -817,7 +817,7 @@ dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "40a837733837d9ddc662592cf3f6dd611812dfedbf324fd2a185b187c95c1773"
+content-hash = "9b7e26b90ef76d7802a840d90ade21a93727939b11f910aaed0af9fbebcbe1b3"
 
 [metadata.files]
 aiocache = [
@@ -929,8 +929,8 @@ coverage = [
     {file = "coverage-6.3.2.tar.gz", hash = "sha256:03e2a7826086b91ef345ff18742ee9fc47a6839ccd517061ef8fa1976e652ce9"},
 ]
 fastapi = [
-    {file = "fastapi-0.71.0-py3-none-any.whl", hash = "sha256:a78eca6b084de9667f2d5f37e2ae297270e5a119cd01c2f04815795da92fc87f"},
-    {file = "fastapi-0.71.0.tar.gz", hash = "sha256:2b5ac0ae89c80b40d1dd4b2ea0bb1f78d7c4affd3644d080bf050f084759fff2"},
+    {file = "fastapi-0.75.0-py3-none-any.whl", hash = "sha256:43d12891b78fc497a50623e9c7c24640c569489f060acd9ce2c4902080487a93"},
+    {file = "fastapi-0.75.0.tar.gz", hash = "sha256:124774ce4cb3322841965f559669b233a0b8d343ea24fdd8b293253c077220d7"},
 ]
 flake8 = [
     {file = "flake8-4.0.1-py2.py3-none-any.whl", hash = "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d"},
