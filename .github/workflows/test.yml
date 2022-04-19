@@ -24,11 +24,11 @@ jobs:
       max-parallel: 3
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - uses: actions/setup-python@v3.0.0
+      - uses: actions/setup-python@v3.1.0
         with:
           python-version: ${{ matrix.python }}
 
@@ -41,7 +41,7 @@ jobs:
         run: |
           echo "::set-output name=dir::$(poetry config cache-dir)"
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3.0.2
         with:
           path: |
             ${{ steps.cache-poetry.outputs.dir }}
@@ -59,7 +59,7 @@ jobs:
       - name: Testing with pytest
         run: |
           curl -L ${{ secrets.DOTENV_LINK }} > .env
-          poetry run pytest --cov ./hibiapi/ --cov-report xml --cov-report term-missing --reruns 5 --reruns-delay 7 ./test
+          poetry run pytest --cov ./hibiapi/ --cov-report xml --cov-report term-missing ./test
 
       - uses: codecov/codecov-action@v2.1.0
         with:
