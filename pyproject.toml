@@ -17,7 +17,7 @@ python = "^3.8"
 fastapi = "^0.71.0"
 httpx = { extras = ["http2"], version = ">=0.21.3,<0.24.0" }
 uvicorn = { extras = ["standard"], version = ">=0.14,<0.19" }
-confuse = "^1.4.0"
+confuse = ">=1.4,<3.0"
 loguru = ">=0.5.3,<0.7.0"
 python-dotenv = ">=0.17,<0.21"
 qrcode = { extras = ["pil"], version = ">=6.1,<8.0" }
