@@ -14,7 +14,7 @@ hibiapi = 'hibiapi.__main__:main'
 
 [tool.poetry.dependencies]
 python = "^3.8"
-fastapi = "^0.71.0"
+fastapi = ">=0.71,<0.88"
 httpx = { extras = ["http2"], version = ">=0.21.3,<0.24.0" }
 uvicorn = { extras = ["standard"], version = ">=0.14,<0.19" }
 confuse = "^1.4.0"
